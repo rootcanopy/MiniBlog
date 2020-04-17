@@ -1,6 +1,7 @@
 import os
 import env
 from flask import Flask, render_template, url_for, flash, redirect
+from flask_pymongo import PyMongo
 from forms import LoginForm
 
 
@@ -12,8 +13,7 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 
 
-
-
+mongo = PyMongo(app)
 
 @app.route('/')
 def base():
