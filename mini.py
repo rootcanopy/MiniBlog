@@ -3,6 +3,7 @@ import env
 from flask import Flask, render_template, url_for, flash, redirect
 from flask_pymongo import PyMongo
 from forms import LoginForm
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 app = Flask(__name__)
