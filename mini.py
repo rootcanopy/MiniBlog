@@ -10,7 +10,7 @@ app = Flask(__name__)
 # SSSHHHH
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
-# @ BOTTOM BECAUSE OF CIRCULAR IMPORTS
+SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
 
 
 @app.route('/')
