@@ -86,6 +86,9 @@ https://www.zastavki.com/eng/Photography/Photoshop/wallpaper-85544.htm
 //web template
 https://templated.co/
 
+//create model represents data
+http://ondras.zarovi.cz/sql/demo
+
 ## **Acknowledgements**
 
 

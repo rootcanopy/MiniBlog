@@ -7,10 +7,12 @@ from forms import LoginForm
 app = Flask(__name__)
 
 
-# SSSHHHH
+# SSSSHHHH
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
-SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL')
+
+
+
 
 
 @app.route('/')
