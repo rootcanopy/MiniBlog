@@ -20,7 +20,7 @@ def base():
 
 @app.route('/index')
 def home():
-    return render_template('index.html', title='Home', user=user)
+    return render_template('index.html', title='Home')
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -30,7 +30,8 @@ def login():
     if form.validate_on_submit():
         flash('Login success for user {}, remember_me{}'.format(
             form.username.data, form.remember_me.data))
-        return redirect('/index')
+        
+        return redirect(url_for('home'))
     return render_template('login.html', title='Log In', form=form)
 
 
