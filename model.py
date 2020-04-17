@@ -1,5 +1,11 @@
-import mini
+import os
+from mini import login
 from flask_login import UserMixin
+
+
+@login_manager.user_loader
+def load_user(_id):
+    return User.mongo.db.find(toInt(_id))
 
 
 class User(UserMixin, db.Document):
