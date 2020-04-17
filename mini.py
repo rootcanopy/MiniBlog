@@ -18,15 +18,20 @@ def base():
     return render_template('base.html')
 
 
-@app.route('/')
+@app.route('/index')
 def home():
-    render_template('index.html', title='Home')
+    return render_template('index.html', title='Home', user=user)
 
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
-    return  render_template('login.html', title='Log In', form=form)
+    # IF ITS RIGHT THE FIRST TIME
+    if form.validate_on_submit():
+        flash('Login success for user {}, remember_me{}'.format(
+            form.username.data, form.remember_me.data))
+        return redirect('/index')
+    return render_template('login.html', title='Log In', form=form)
 
 
 if __name__ == '__main__':
