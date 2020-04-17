@@ -89,6 +89,9 @@ https://templated.co/
 //create model represents data
 http://ondras.zarovi.cz/sql/demo
 
+// Database Model
+https://ondras.zarovi.cz/sql/demo/
+
 ## **Acknowledgements**
 
 

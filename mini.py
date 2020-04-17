@@ -4,6 +4,7 @@ from flask import Flask, render_template, url_for, flash, redirect
 from flask_pymongo import PyMongo
 from forms import LoginForm
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_login import LoginManager
 
 
 app = Flask(__name__)
@@ -15,6 +16,8 @@ app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 
 
 mongo = PyMongo(app)
+login = LoginManager(app)
+
 
 @app.route('/')
 def base():
