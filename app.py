@@ -94,7 +94,8 @@ def login():
 @app.route('/logout')
 def logout():
     #POP THE SESSION
-    session.clear()
+    session.pop('logged_in', None)
+    flash('You were logged out')
     return redirect(url_for('index'))
 
 
