@@ -2,7 +2,7 @@ import os
 import env
 from flask_login import LoginManager, current_user, login_user
 from flask import Flask, render_template, url_for, flash, redirect
-from flask_pymongo import PyMongo
+from flask_mongoengine import MongoEngine
 from forms import LoginForm
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -13,10 +13,11 @@ app = Flask(__name__)
 # SSSSHHHH
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
+app.config["MONGO_DBNAME"] = "blog"
 
-
-mongo = PyMongo(app)
-login_manager = LoginManager(app)
+db = MongoEngine(app)
+#login_manager = LoginManager(app)
+#login_manager.init_app(app)
 
 
 @app.route('/')
@@ -31,8 +32,9 @@ def home():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    if current_user.is_authenticated:
-        return redirect(url_for('index'))
+    #IF SESSION ACTIVE IN BROWSER
+    #if current_user.is_authenticated:
+        #return redirect(url_for('index'))
     form = LoginForm()
 
     # IF ITS RIGHT THE FIRST TIME
