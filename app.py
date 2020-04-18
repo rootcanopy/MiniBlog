@@ -1,12 +1,14 @@
-import os
-#from pymongo import PyMongo, pymongo
+
+from flask_pymongo import PyMongo, pymongo
 from bson.objectid import ObjectId
+from forms import LoginForm
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import Flask, render_template, redirect, request, url_for, flash, session
+import os
+import env
+
 
 app = Flask(__name__)
-
-#mongo = Pymongo(app)
 
 
 # SSSSHHHH
@@ -15,8 +17,16 @@ app.config["MONGO_DBNAME"] = "blog"
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
 
-# WHEN BASE LOADS
+mongo = PyMongo(app)
+
+
+# THE FOUNDATION
 @app.route('/')
+def base():
+    return render_template('base.html')
+
+
+# WHEN BASE LOADS
 @app.route('/index')
 def index():
     if 'logged_in' in session:
@@ -25,7 +35,7 @@ def index():
         return render_template('index.html', title='Home',
                             current_user=current_user)
     else:
-        render_template('index.html', title='Home')
+        return render_template('index.html', title='Home')
 
 
 # USER REGISTRATION
@@ -38,7 +48,7 @@ def register():
     form = RegistrationForm()
     if form.validate_on_submit():
 
-        db_user = mongo.db.users
+        users = mongo.db.users
         db_user = users.find_one({'name': request.form['username'].title()})
 
         if db_user is None:
@@ -49,25 +59,26 @@ def register():
             session['logged_in'] = True
             return redirect(url_for('index'))
 
-        flash('Sorry, username already taken. Please try another.')
+        flash('Sorry, username or password already taken. Please try another.')
         return redirect(url_for('register'))
     return render_template('register.html', form=form, title="Register")
 
 
 # USER LOGIN
 @app.route('/login', methods=['GET', 'POST'])
-def user_login():
+def login():
     #Logic for handling the loggin in of users
     if 'logged_in' in session:  # Check is already logged in
-        return redirect(url_for('index'))
+        return redirect(url_for('index', title="Sign In!"))
 
     form = LoginForm()
-    if form.validate_on_submit():
-        user = mongo.db.users
-        logged_in_user = user.find_one({
-                                'name': request.form['username'].title()})
 
-        if logged_in_users:
+    if form.validate_on_submit():
+        users = mongo.db.users
+        logged_in_user = users.find_one({'name': request.form
+                                        ['email'].title()})
+
+        if logged_in_user:
             if check_password_hash(logged_in_user['pass'],
                                    request.form['password']):
                 session['username'] = request.form['username']

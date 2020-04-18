@@ -8,7 +8,7 @@
     <!-- BS4 LINK-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- CUSTOM STYLE LINK-->
-    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}"" type="text/css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" type="text/css" />
 
     {% if title %}
         <title>{{ title }} - MiniBlog</title>
@@ -21,7 +21,7 @@
     <header class="site-head">
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
             <div class="container">
-              <a class="navbar-brand book-b" href="{{ url_for('home') }}">MiniBlog</a>
+              <a class="navbar-brand book-b" href="{{ url_for('index') }}">MiniBlog</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -29,7 +29,7 @@
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav ml-auto">
                      
-                        <a class="nav-item nav-link active" href="{{ url_for('home') }}">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-item nav-link active" href="{{ url_for('index') }}">Home <span class="sr-only">(current)</span></a>
                     
                         <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
                     
