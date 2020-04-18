@@ -6,6 +6,14 @@ from app.forms import LoginForm
 from app.models import User
 
 
+app = Flask(__name__)
+
+db = MongoEngine(app)
+#db.init_app(app)
+#login_manager = LoginManager(app)
+#login_manager.init_app(app)
+
+
 @app.route('/')
 def base():
     return render_template('base.html')
