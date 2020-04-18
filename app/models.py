@@ -1,11 +1,8 @@
 from datetime import datetime
-import os
 from app import db
-from werkzeug.security import generate_password_hash, check_password_hash
-from mini import login
-from flask_mongoengine.wtf import model_form, Document
+from flask_mongoengine.wtf import model_form, Document, Post
 from flask_login import UserMixin
-
+from werkzeug.security import generate_password_hash, check_password_hash
 
 """
 @login_manager.user_loader
