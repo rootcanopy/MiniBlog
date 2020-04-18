@@ -2,12 +2,8 @@ import os
 import env
 from flask_login import LoginManager, current_user, login_user
 from flask import Flask, render_template, url_for, flash, redirect
-from flask_mongoengine import MongoEngine
 from forms import LoginForm
 from werkzeug.security import generate_password_hash, check_password_hash
-
-
-app = Flask(__name__)
 
 
 # SSSSHHHH
@@ -16,6 +12,7 @@ app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.config["MONGO_DBNAME"] = "blog"
 
 db = MongoEngine(app)
+#db.init_app(app)
 #login_manager = LoginManager(app)
 #login_manager.init_app(app)
 
