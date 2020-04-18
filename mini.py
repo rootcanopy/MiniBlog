@@ -1,4 +1,4 @@
-import os import os
+import os
 import env
 from flask_login import LoginManager, current_user, login_user
 from flask import Flask, render_template, url_for, flash, redirect
