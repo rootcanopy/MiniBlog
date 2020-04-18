@@ -29,7 +29,7 @@ class User(UserMixin, db.Document):
 
 @login_manager.user_loader
 def load_user(user_id):
-    return User.objects(pk=user_id)first()
+    return User.objects(pk=user_id).first()
 
 
 class Post(db.Document):
