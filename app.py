@@ -1,11 +1,10 @@
-
+import os
+import env
 from flask_pymongo import PyMongo, pymongo
 from bson.objectid import ObjectId
 from forms import LoginForm
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import Flask, render_template, redirect, request, url_for, flash, session
-import os
-import env
 
 
 app = Flask(__name__)
@@ -18,6 +17,7 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
 
 mongo = PyMongo(app)
+
 
 
 # THE FOUNDATION
@@ -87,7 +87,8 @@ def login():
             flash('Sorry incorrect password!')
             return redirect(url_for('user_login'))
     return render_template('login.html', form=form, title='Login')
-    
+
+
 
 # USER LOGOUT
 @app.route('/logout')

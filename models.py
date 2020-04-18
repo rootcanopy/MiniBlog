@@ -1,9 +1,11 @@
-"""
+from flask import Flask
+from app import app
 from datetime import datetime
 from flask_mongoengine.wtf import model_form, Document
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import UserMixin
-from mini import login_manager
+from flask_login import user_loader, request_loader, UserMixin
+from app import login_manager
+
 
 class User(UserMixin, db.Document):
     _id = db.IntField (primary_key=True)
@@ -39,4 +41,4 @@ class Post(db.Document):
     
     def __repr__(self):
         return f"Post('{self.title}', '{self.date_posted}')"
-"""
+
